@@ -1,8 +1,13 @@
 ---
 title: "wk2-workshop"
 author: "Yang Shu Ting (A0238974L)"
-date: "2024-01-24"
-output: html_document
+date: "`r Sys.Date()"
+output: 
+  github_document:
+    toc: true
+    toc_depth: 2
+    fig_width: 7
+    fig_height: 6
 ---
 
 ```{r setup, include=FALSE}
