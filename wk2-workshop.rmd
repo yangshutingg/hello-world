@@ -1,7 +1,7 @@
 ---
 title: "wk2-workshop"
 author: "Yang Shu Ting (A0238974L)"
-date: "`r Sys.Date()"
+date: "`r Sys.Date()`"
 output: 
   github_document:
     toc: true
@@ -15,8 +15,35 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Read in data
+
 ```{r}
 df <- readRDS("data/wk2_stocks.rds")
 str(df)
+```
+
+## Statistics on Returns
+
++ The cumulative returns of the S&P index during this period is `r round(sum(df$SPY_returns) * 100, 2)`%.
++ The average daily returns of the S&P index during this period is `r round(mean(df$SPY_returns) * 100, 2)`%.
++ The standard deviation of the daily returns of the S&P index during this period is `r round(sd(df$SPY_returns) * 100, 2)`%.
+
+## S&P Prices
+
+```{r}
+library(tidyverse)
+ggplot(data = df, aes(x = date, y = SPY_prices)) +
+  geom_line()
+```
+
+## S&P Yearly Returns
+
+```{r}
+df %>%
+  mutate(year = year(date)) %>%
+  filter(year <= 2023) %>%
+  group_by(year) %>%
+  summarize(yr_return = sum(SPY_returns) * 100) %>%
+  ggplot(aes(x = year, y = yr_return)) +
+  geom_col()
 ```
 
