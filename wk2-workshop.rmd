@@ -29,7 +29,7 @@ str(df)
 
 ## S&P Prices
 
-```{r}
+```{r, message = FALSE}
 library(tidyverse)
 ggplot(data = df, aes(x = date, y = SPY_prices)) +
   geom_line()
